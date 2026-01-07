@@ -8,4 +8,100 @@
     android:background="#BEEBFF"
     tools:context=".HomepageActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:padding="12dp"
+        android:onClick="goBack"
+        app:srcCompat="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_line"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="263dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="BOYCOTT SCANNER APP"
+        android:textColor="#020202"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/horizontal_line"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="3dp"
+        android:background="#100E0E"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:text="Scan products instantly and know which brands to boycott. Shop smarter, stand with your values"
+        android:textColor="#090909"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_line" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_yellow"
+        android:layout_width="335dp"
+        android:layout_height="151dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        app:cardBackgroundColor="#FFEB3B"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/card_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_grey"
+        android:layout_width="335dp"
+        android:layout_height="151dp"
+        android:layout_marginTop="24dp"
+        app:cardBackgroundColor="#D8E3EB"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/card_orange"
+        app:layout_constraintEnd_toEndOf="@+id/card_yellow"
+        app:layout_constraintStart_toStartOf="@+id/card_yellow"
+        app:layout_constraintTop_toBottomOf="@+id/card_yellow" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_orange"
+        android:layout_width="335dp"
+        android:layout_height="151dp"
+        android:layout_marginTop="24dp"
+        app:cardBackgroundColor="#F4D29A"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/card_yellow"
+        app:layout_constraintStart_toStartOf="@+id/card_yellow"
+        app:layout_constraintTop_toBottomOf="@+id/card_grey" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
