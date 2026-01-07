@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarcodeScannerApp">
         <activity
+            android:name=".HomepageActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
