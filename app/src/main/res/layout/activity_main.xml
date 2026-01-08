@@ -14,7 +14,7 @@
         android:layout_margin="12dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        app:cardBackgroundColor="#F6E0E9"
+        app:cardBackgroundColor="#EFEEA4"
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,9 +41,9 @@
             android:layout_marginTop="320dp"
             android:fontFamily="serif"
             android:text="ONE SCAN CAN MAKE A CHANGE !"
-            android:textColor="#ED5794"
+            android:textColor="#000000"
             android:textSize="18sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button"
@@ -54,12 +54,12 @@
             android:backgroundTint="#CDEBC5"
             android:fontFamily="serif"
             android:text="GET STARTED"
-            android:textColor="#ED5794"
+            android:textColor="#000000"
             android:onClick="openHomepage"
             android:textSize="24sp"
             android:textStyle="bold"
             app:strokeColor="#ED5794"
-            app:strokeWidth="3dp" />
+            app:strokeWidth="4dp" />
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
