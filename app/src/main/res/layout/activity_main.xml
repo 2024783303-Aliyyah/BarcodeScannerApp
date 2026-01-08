@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BEEBFF"
+    android:background="#CDEBC5"
     tools:context=".MainActivity">
 
     <com.google.android.material.card.MaterialCardView
@@ -14,15 +14,15 @@
         android:layout_margin="12dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        app:cardBackgroundColor="#D128C0FA"
+        app:cardBackgroundColor="#F6E0E9"
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="#3F51B5"
-        app:strokeColor="#3F51B5"
+        app:rippleColor="#ED5794"
+        app:strokeColor="#ED5794"
         app:strokeWidth="4dp">
 
         <ImageView
@@ -41,7 +41,7 @@
             android:layout_marginTop="320dp"
             android:fontFamily="serif"
             android:text="ONE SCAN CAN MAKE A CHANGE !"
-            android:textColor="#090909"
+            android:textColor="#ED5794"
             android:textSize="18sp"
             android:textStyle="bold|italic" />
 
@@ -51,13 +51,14 @@
             android:layout_height="68dp"
             android:layout_marginTop="395dp"
             android:layout_marginLeft="75dp"
-            android:backgroundTint="#8BC34A"
+            android:backgroundTint="#CDEBC5"
             android:fontFamily="serif"
             android:text="GET STARTED"
+            android:textColor="#ED5794"
             android:onClick="openHomepage"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:strokeColor="#FFFFFF"
+            app:strokeColor="#ED5794"
             app:strokeWidth="3dp" />
     </com.google.android.material.card.MaterialCardView>
 
