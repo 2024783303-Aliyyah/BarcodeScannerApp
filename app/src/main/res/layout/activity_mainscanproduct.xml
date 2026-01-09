@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription"/>
 
+    <!-- Tajuk (Diletakkan di tengah skrin) -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
@@ -30,10 +31,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.338"
-        app:layout_constraintStart_toEndOf="@id/btnBack"
-        app:layout_constraintTop_toTopOf="@id/btnBack"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnBack" />
 
     <View
         android:id="@+id/divider"
@@ -44,13 +43,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Scan Barcode Button -->
     <TextView
         android:id="@+id/tvDesc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        android:layout_marginTop="48dp"
         android:gravity="center"
         android:text="Scan products instantly and know which brands to boycott. Shop smarter, stand with your values."
         android:textColor="#000000"
@@ -59,6 +56,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider" />
 
+    <!-- Scan Product Card -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardScan"
         android:layout_width="335dp"
@@ -66,7 +64,6 @@
         app:cardBackgroundColor="#F6E0E9"
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp"
-        app:rippleColor="#ED5794"
         app:strokeColor="#ED5794"
         app:strokeWidth="4dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,27 +77,22 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
-
             <ImageView
                 android:layout_width="52dp"
                 android:layout_height="36dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/camera"
-                tools:ignore="ContentDescription" />
-
+                android:src="@drawable/camera" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center"
+                android:layout_marginTop="8dp"
                 android:text="Scan Product"
                 android:textColor="#1A1818"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Insert Barcode Button -->
+    <!-- Insert Barcode Card -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardInsert"
         android:layout_width="335dp"
@@ -109,7 +101,6 @@
         app:cardBackgroundColor="#F6E0E9"
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp"
-        app:rippleColor="#ED5794"
         app:strokeColor="#ED5794"
         app:strokeWidth="4dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,31 +113,27 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
-
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="32dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/magnifier"
-                tools:ignore="ContentDescription" />
-
+                android:src="@drawable/magnifier" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Insert Barcode"
                 android:textColor="#1A1818"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
-                android:layout_marginTop="12dp"
-                android:gravity="center"/>
+                android:layout_marginTop="8dp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Bottom Navigation -->
+    <!-- Bottom Navigation (Floating Style) -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomNavCard"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
         app:cardCornerRadius="28dp"
         app:cardElevation="8dp"
         app:cardBackgroundColor="#F1F093"
@@ -155,14 +142,18 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
+            android:id="@+id/bottom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            app:itemIconTint="@color/ed5794"
-            app:itemTextColor="@android:color/black"
+            app:itemIconTint="#ED5794"
+            app:itemTextColor="#000000"
             app:menu="@menu/bottom_navigation"
-            app:labelVisibilityMode="labeled" />
+            app:labelVisibilityMode="labeled"
+            app:itemPaddingTop="10dp"
+            app:itemPaddingBottom="5dp"
+            app:itemIconSize="22dp"/>
+
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

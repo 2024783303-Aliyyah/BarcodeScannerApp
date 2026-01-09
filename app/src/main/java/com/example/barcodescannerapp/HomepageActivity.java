@@ -1,5 +1,6 @@
 package com.example.barcodescannerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -21,7 +22,12 @@ public class HomepageActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-    }
+
+    findViewById(R.id.card_yellow).setOnClickListener(v -> {
+        Intent intent = new Intent(HomepageActivity.this, MainScanProductActivity.class);
+        startActivity(intent);
+    });
+}
 
     public void goBack(View view)
     {
