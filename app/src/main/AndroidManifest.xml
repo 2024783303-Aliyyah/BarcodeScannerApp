@@ -16,14 +16,15 @@
             android:exported="false" />
 
 
-        <activity android:name=".MainScanProductActivity"/>
+        <!--<activity android:name=".MainScanProductActivity"/>  -->
 
 
-        <activity android:name=".ScanProductActivity"/>
+
+
 
 
         <activity
-            android:name=".MainActivity"
+            android:name=".MainScanProductActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

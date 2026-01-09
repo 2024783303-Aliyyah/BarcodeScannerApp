@@ -3,4 +3,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="ed5794">#ED5794</color>
+    <color name="light_green_bg">#CDEBC5</color>
+    <color name="light_peach_button_bg">#FFF3E0</color>
+    <color name="dark_brown_button_bg">#8D6E63</color>
+    <color name="search_bar_bg">#FFFFFF</color>
+    <color name="text_color_dark">#3E2723</color>
+    <color name="search_text_hint">#757575</color>
+    <color name="bottom_nav_bg">#F1F093</color>
+
+
 </resources>
