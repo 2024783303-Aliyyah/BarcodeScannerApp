@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CDEBC5"
-    tools:context=".ScanHomeActivity">
+    tools:context=".MainScanProductActivity">
 
     <!-- Back Button -->
     <ImageView
@@ -20,20 +20,20 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription"/>
 
-
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SCAN PRODUCT"
+        android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="#000000"
-        app:layout_constraintTop_toTopOf="@id/btnBack"
         app:layout_constraintBottom_toBottomOf="@id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.338"
         app:layout_constraintStart_toEndOf="@id/btnBack"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintVertical_bias="0.666" />
 
     <View
         android:id="@+id/divider"
@@ -44,21 +44,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-
+    <!-- Scan Barcode Button -->
     <TextView
         android:id="@+id/tvDesc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Scan products instantly and know which brands to boycott. Shop smarter, stand with your values."
-        android:textSize="16sp"
-        android:textColor="#000000"
-        android:gravity="center"
         android:layout_margin="24dp"
-        app:layout_constraintTop_toBottomOf="@id/divider"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="Scan products instantly and know which brands to boycott. Shop smarter, stand with your values."
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/divider" />
 
-    <!-- Scan Barcode Button -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardScan"
         android:layout_width="335dp"
@@ -71,13 +71,13 @@
         app:strokeWidth="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDesc"
         app:layout_constraintBottom_toTopOf="@id/cardInsert"
-        app:layout_constraintVertical_bias="0.5">  <!-- positions it slightly above center -->
+        app:layout_constraintVertical_chainStyle="packed">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="125dp"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -105,6 +105,7 @@
         android:id="@+id/cardInsert"
         android:layout_width="335dp"
         android:layout_height="120dp"
+        android:layout_marginTop="20dp"
         app:cardBackgroundColor="#F6E0E9"
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp"
@@ -114,8 +115,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardScan"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavCard"
-        app:layout_constraintVertical_bias="0">  <!-- keeps it close to Scan button -->
+        app:layout_constraintBottom_toTopOf="@id/bottomNavCard">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -142,7 +142,6 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-
     <!-- Bottom Navigation -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomNavCard"
@@ -155,13 +154,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             app:itemIconTint="@color/ed5794"
-        app:itemTextColor="@android:color/black"
-        app:menu="@menu/bottom_navigation"/>
+            app:itemTextColor="@android:color/black"
+            app:menu="@menu/bottom_navigation"
+            app:labelVisibilityMode="labeled" />
     </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

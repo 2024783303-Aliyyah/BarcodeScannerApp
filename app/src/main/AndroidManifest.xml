@@ -14,7 +14,14 @@
         <activity
             android:name=".HomepageActivity"
             android:exported="false" />
-        <activity android:name=".ScanHomeActivity"/>
+
+
+        <activity android:name=".MainScanProductActivity"/>
+
+
+        <activity android:name=".ScanProductActivity"/>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
