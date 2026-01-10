@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Search Section (DIKEKALKAN) -->
+    <!-- Search Section -->
     <LinearLayout
         android:id="@+id/searchLayout"
         android:layout_width="0dp"
@@ -109,15 +109,16 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/chocolateListContainer"
+                android:id="@+id/bevergesListContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Setiap TextView mewakili satu item -->
+                <!-- ======== PERUBAHAN DI SINI ======== -->
+                <!-- Item Pepsi -->
                 <TextView
-                    android:id="@+id/chocolate_kitkat"
+                    android:id="@+id/beverages_pepsi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="1. Pepsi"
@@ -127,79 +128,32 @@
                     android:padding="12dp"
                     android:background="?android:attr/selectableItemBackground"/>
 
+                <!-- Item Fanta -->
                 <TextView
-                    android:id="@+id/chocolate_cadbury"
+                    android:id="@+id/beverages_fanta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2. Cola-Cola"
+                    android:text="2. Fanta"
                     android:textSize="20sp"
                     android:textColor="#1A1818"
                     android:textStyle="bold"
                     android:padding="12dp"
                     android:layout_marginTop="8dp"
                     android:background="?android:attr/selectableItemBackground"/>
+                <!-- ======== TAMAT PERUBAHAN ======== -->
 
+                <!-- Item Sprite -->
                 <TextView
-                    android:id="@+id/chocolate_toblerone"
+                    android:id="@+id/beverages_sprite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="3. 7Up"
+                    android:text="3. Sprite"
                     android:textSize="20sp"
                     android:textColor="#1A1818"
                     android:textStyle="bold"
                     android:padding="12dp"
                     android:layout_marginTop="8dp"
                     android:background="?android:attr/selectableItemBackground"/>
-
-                <TextView
-                    android:id="@+id/chocolate_ferrero"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="4. Mountain Dew"
-                    android:textSize="20sp"
-                    android:textColor="#1A1818"
-                    android:textStyle="bold"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp"
-                    android:background="?android:attr/selectableItemBackground"/>
-
-                <TextView
-                    android:id="@+id/chocolate_kinder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="5. Miranda"
-                    android:textSize="20sp"
-                    android:textColor="#1A1818"
-                    android:textStyle="bold"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp"
-                    android:background="?android:attr/selectableItemBackground"/>
-
-                <TextView
-                    android:id="@+id/chocolate_mnm"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="6. Sprite"
-                    android:textSize="20sp"
-                    android:textColor="#1A1818"
-                    android:textStyle="bold"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp"
-                    android:background="?android:attr/selectableItemBackground"/>
-
-
-                <TextView
-                    android:id="@+id/chocolate_snickers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="7. Fanta"
-                    android:textSize="20sp"
-                    android:textColor="#1A1818"
-                    android:textStyle="bold"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp"
-                    android:background="?android:attr/selectableItemBackground"/>
-
 
             </LinearLayout>
         </ScrollView>
