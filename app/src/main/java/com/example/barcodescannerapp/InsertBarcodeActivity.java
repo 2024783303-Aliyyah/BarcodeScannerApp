@@ -104,7 +104,7 @@ public class InsertBarcodeActivity extends AppCompatActivity {
             resultBarcodeNumber.setText(barcode);
             resultStatusIcon.setImageResource(R.drawable.icon_safe); // Perlukan ikon 'tick' hijau
             resultStatusText.setText("Good news! This item is not flagged in any public boycott lists.");
-            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
+            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
 
             // Paparkan kad hasil
             resultCard.setVisibility(View.VISIBLE);
@@ -117,9 +117,9 @@ public class InsertBarcodeActivity extends AppCompatActivity {
 
             resultProductName.setText(fullProductName);
             resultBarcodeNumber.setText(barcode);
-            resultStatusIcon.setImageResource(R.drawable.icon_safe); // Perlukan ikon 'tick' hijau
+            resultStatusIcon.setImageResource(R.drawable.icon_boycott); // Perlukan ikon 'tick' hijau
             resultStatusText.setText("This product appears in public boycott lists!");
-            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
+            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
 
             // Paparkan kad hasil
             resultCard.setVisibility(View.VISIBLE);
@@ -132,9 +132,9 @@ public class InsertBarcodeActivity extends AppCompatActivity {
 
             resultProductName.setText(fullProductName);
             resultBarcodeNumber.setText(barcode);
-            resultStatusIcon.setImageResource(R.drawable.icon_safe); // Perlukan ikon 'tick' hijau
+            resultStatusIcon.setImageResource(R.drawable.icon_boycott); // Perlukan ikon 'tick' hijau
             resultStatusText.setText("This product appears in public boycott lists!");
-            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
+            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
 
             // Paparkan kad hasil
             resultCard.setVisibility(View.VISIBLE);
