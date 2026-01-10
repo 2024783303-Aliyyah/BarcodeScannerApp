@@ -2,7 +2,8 @@
 package com.example.barcodescannerapp; // Gantikan dengan pakej anda
 
 import android.content.Intent;
-import android.os.Bundle;import android.view.View;
+import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -38,6 +39,8 @@ public class InsertBarcodeActivity extends AppCompatActivity {
         resultBarcodeNumber = findViewById(R.id.resultBarcodeNumber);
         resultStatusText = findViewById(R.id.resultStatusText);
         resultStatusIcon = findViewById(R.id.resultStatusIcon);
+
+        bottomNavigationView = findViewById(R.id.bottom);
 
         // Fungsi untuk butang kembali
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
@@ -106,7 +109,53 @@ public class InsertBarcodeActivity extends AppCompatActivity {
             // Paparkan kad hasil
             resultCard.setVisibility(View.VISIBLE);
 
-        } else {
+        }
+        else if (barcode.equals("12345678910")) { // Contoh barcode untuk Super Ring
+            // Produk ditemui dan TIDAK berada dalam senarai boikot
+            String productName = "KITKAT";
+            String fullProductName = productName + " (" + barcode + ")";
+
+            resultProductName.setText(fullProductName);
+            resultBarcodeNumber.setText(barcode);
+            resultStatusIcon.setImageResource(R.drawable.icon_safe); // Perlukan ikon 'tick' hijau
+            resultStatusText.setText("This product appears in public boycott lists!");
+            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
+
+            // Paparkan kad hasil
+            resultCard.setVisibility(View.VISIBLE);
+
+        }
+        else if (barcode.equals("987654321")) { // Contoh barcode untuk Super Ring
+            // Produk ditemui dan TIDAK berada dalam senarai boikot
+            String productName = "MAGGIE";
+            String fullProductName = productName + " (" + barcode + ")";
+
+            resultProductName.setText(fullProductName);
+            resultBarcodeNumber.setText(barcode);
+            resultStatusIcon.setImageResource(R.drawable.icon_safe); // Perlukan ikon 'tick' hijau
+            resultStatusText.setText("This product appears in public boycott lists!");
+            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
+
+            // Paparkan kad hasil
+            resultCard.setVisibility(View.VISIBLE);
+
+        }
+        else if (barcode.equals("246810121416")) { // Contoh barcode untuk Super Ring
+            // Produk ditemui dan TIDAK berada dalam senarai boikot
+            String productName = "VICO";
+            String fullProductName = productName + " (" + barcode + ")";
+
+            resultProductName.setText(fullProductName);
+            resultBarcodeNumber.setText(barcode);
+            resultStatusIcon.setImageResource(R.drawable.icon_safe); // Perlukan ikon 'tick' hijau
+            resultStatusText.setText("Good news! This item is not flagged in any public boycott lists.");
+            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
+
+            // Paparkan kad hasil
+            resultCard.setVisibility(View.VISIBLE);
+
+        }
+        else {
             // Jika barcode tidak ditemui
             resultCard.setVisibility(View.GONE); // Sembunyikan kad
             // Anda boleh tunjukkan Toast message
