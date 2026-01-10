@@ -136,7 +136,7 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="105dp"
             android:fontFamily="sans-serif-condensed-medium"
-            android:text="Search Brand"
+            android:text="Search Product"
             android:textColor="#161414"
             android:textSize="24sp"
             android:textStyle="bold" />
