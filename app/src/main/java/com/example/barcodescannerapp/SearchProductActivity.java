@@ -134,7 +134,7 @@ public class SearchProductActivity extends AppCompatActivity {
                     "Country of Origin: Malaysia\n";
 
             // 2. Bina teks status dengan tag warna HTML
-            String statusText = "Status : <font color='#8fce00'>BOYCOTT!</font>"; // #FF0000 adalah kod warna merah
+            String statusText = "Status : <font color='#8fce00'>SAFE!</font>"; // #FF0000 adalah kod warna merah
 
             // 3. Gabungkan teks butiran dan teks status
             String fullDetailsText = details + statusText;
@@ -155,5 +155,9 @@ public class SearchProductActivity extends AppCompatActivity {
             Toast.makeText(this, "Product not found!", Toast.LENGTH_SHORT).show();
             productDetailsContainer.setVisibility(View.GONE);
         }
+    }
+    public void goBack(View view)
+    {
+        finish();
     }
 }
