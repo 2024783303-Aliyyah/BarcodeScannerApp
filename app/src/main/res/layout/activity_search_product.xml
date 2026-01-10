@@ -6,16 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F6E0E9"
+    android:fitsSystemWindows="true"
     tools:context=".SearchProductActivity">
 
-    <!-- Header (Kekal sama) -->
+    <!-- Header Section -->
     <ImageView
         android:id="@+id/btnBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="63dp"
+        android:layout_height="53dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:padding="10dp"
+        android:onClick="goBack"
         android:src="@drawable/backbutton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,39 +27,41 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SCAN PRODUCT"
+        android:text="SEARCH PRODUCT"
         android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toEndOf="@+id/btnBack"
-        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+        app:layout_constraintTop_toTopOf="@+id/btnBack"
+        app:layout_constraintVertical_bias="0.666" />
 
     <View
         android:id="@+id/horizontal_line"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="12dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnBack" />
 
-    <!-- Bahagian Carian (Kekal sama) -->
+    <!-- Bahagian Carian -->
     <LinearLayout
         android:id="@+id/searchLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horizontal_line">
-        <!-- EditText and Button here -->
+
         <EditText
             android:id="@+id/searchEditText"
             android:layout_width="0dp"
@@ -80,7 +84,7 @@
             app:icon="@android:drawable/ic_menu_search"/>
     </LinearLayout>
 
-    <!-- CardView Utama (Kekal sama) -->
+    <!-- CardView Utama -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/productCard"
         android:layout_width="0dp"
@@ -96,7 +100,7 @@
         app:strokeColor="#ED5794"
         app:strokeWidth="4dp">
 
-        <!-- ====================== KANDUNGAN KAD (DIBETULKAN) ====================== -->
+        <!-- Kandungan dalam kad (tidak berubah) -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/product_details_container"
             android:layout_width="match_parent"
@@ -105,7 +109,6 @@
             android:visibility="gone"
             tools:visibility="visible">
 
-            <!-- Butang Bookmark (di penjuru atas kanan) -->
             <ImageView
                 android:id="@+id/bookmark_button"
                 android:layout_width="56dp"
@@ -115,7 +118,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Gambar Produk -->
+
             <ImageView
                 android:id="@+id/product_image"
                 android:layout_width="120dp"
@@ -128,7 +131,7 @@
                 app:layout_constraintVertical_chainStyle="packed"
                 tools:src="@drawable/maggie" />
 
-            <!-- Nama Produk -->
+
             <TextView
                 android:id="@+id/product_name"
                 android:layout_width="wrap_content"
@@ -143,7 +146,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_image" />
 
-            <!-- Butiran Produk -->
+
             <TextView
                 android:id="@+id/product_details"
                 android:layout_width="wrap_content"
@@ -159,7 +162,7 @@
                 app:layout_constraintTop_toBottomOf="@id/product_name"
                 tools:text="Product Name: Maggi\nCompany: Nestlé\nCategory: Food &amp; Instant Noodles\nCountry of Origin: Switzerland (Nestlé HQ)\nStatus : BOYCOTT!" />
 
-            <!-- Butang Continue -->
+
             <Button
                 android:id="@+id/continue_button"
                 android:layout_width="wrap_content"
@@ -174,10 +177,10 @@
                 app:layout_constraintTop_toBottomOf="@id/product_details" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <!-- ====================================================================== -->
+
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Bar Navigasi Bawah (Kekal sama) -->
+    <!-- Bar Navigasi Bawah -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomNavCard"
         android:layout_width="0dp"
@@ -189,7 +192,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-        <!-- BottomNavigationView -->
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom"
             android:layout_width="match_parent"
