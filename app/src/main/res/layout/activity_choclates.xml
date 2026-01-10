@@ -112,26 +112,32 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Bottom Navigation -->
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomNavCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="#F1F093"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="28dp"
         app:cardElevation="8dp"
+        app:cardBackgroundColor="#F1F093"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
+            android:id="@+id/bottom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            app:itemIconTint="@color/ed5794"
-            app:itemTextColor="@android:color/black"
+            app:itemIconTint="#ED5794"
+            app:itemTextColor="#000000"
             app:menu="@menu/bottom_navigation"
-            app:labelVisibilityMode="labeled" />
+            app:labelVisibilityMode="labeled"
+            app:itemPaddingTop="10dp"
+            app:itemPaddingBottom="5dp"
+            app:itemIconSize="22dp"/>
+
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
