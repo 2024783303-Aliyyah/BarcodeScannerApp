@@ -8,33 +8,51 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BarcodeScannerApp">
-
+        <activity
+            android:name=".SnickersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MNMActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TobleroneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KinderBuenoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FerreroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CadburryActivity"
+            android:exported="false" />
         <activity
             android:name=".ScanProductCamera"
             android:exported="false" />
-
         <activity
             android:name=".MainScanProductActivity"
             android:exported="false" />
-
-
         <activity
             android:name=".MainCategoriesPage"
             android:exported="false" />
-
         <activity
             android:name=".HomepageActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".KitkatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChoclatesActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

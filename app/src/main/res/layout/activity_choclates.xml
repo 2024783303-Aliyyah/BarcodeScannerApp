@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CDEBC5"
-    tools:context=".ChoclatesActivity"> <!-- Pastikan context merujuk ke fail Java yang betul -->
+    android:fitsSystemWindows="true"
+    tools:context=".ChoclatesActivity">
 
     <!-- Back Button -->
     <ImageView
@@ -43,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Search Section -->
+    <!-- Search Section (DIKEKALKAN) -->
     <LinearLayout
         android:id="@+id/searchLayout"
         android:layout_width="0dp"
@@ -102,17 +103,109 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- RecyclerView to display the list of chocolates -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewChocolates"
+        <!-- ScrollView untuk senarai tetap -->
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp"
-            tools:listitem="@layout/list_item_choclates"/>
+            android:layout_height="match_parent">
 
+            <LinearLayout
+                android:id="@+id/chocolateListContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Setiap TextView mewakili satu item -->
+                <TextView
+                    android:id="@+id/chocolate_kitkat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1. KitKat"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/chocolate_cadbury"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2. Cadbury"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/chocolate_toblerone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3. Toblerone"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/chocolate_ferrero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4. Ferrero Rocher"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/chocolate_kinder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="5. Kinder Bueno"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/chocolate_mnm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="6. M AND M's"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+
+                <TextView
+                    android:id="@+id/chocolate_snickers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7. Snickers"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+
+            </LinearLayout>
+        </ScrollView>
     </com.google.android.material.card.MaterialCardView>
 
-
+    <!-- Bottom Navigation -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomNavCard"
         android:layout_width="0dp"
@@ -137,7 +230,6 @@
             app:itemPaddingTop="10dp"
             app:itemPaddingBottom="5dp"
             app:itemIconSize="22dp"/>
-
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

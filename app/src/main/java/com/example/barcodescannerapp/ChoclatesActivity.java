@@ -1,104 +1,126 @@
-package com.example.barcodescannerapp;
+package com.example.barcodescannerapp; // Pastikan nama pakej anda betul
 
-import android.content.Context;
 import android.content.Intent;
-import android.view.LayoutInflater;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Filter;
-import android.widget.Filterable;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class ChoclatesActivity extends RecyclerView.Adapter<ChoclatesActivity.ChocolateViewHolder> implements Filterable {
+public class ChoclatesActivity extends AppCompatActivity {
 
-    private List<String> chocolateList;
-    private List<String> chocolateListFull; // Senarai asal untuk fungsi carian
-    private Context context;
-
-    public ChoclatesActivity(Context context, List<String> chocolateList) {
-        this.context = context;
-        this.chocolateList = chocolateList;
-        this.chocolateListFull = new ArrayList<>(chocolateList); // Salin senarai asal
-    }
-
-    @NonNull
-    @Override
-    public ChocolateViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_choclates, parent, false);
-        return new ChocolateViewHolder(view);
-    }
+    private EditText searchEditText;
+    private TextView kitkatTextView, cadburyTextView, tobleroneTextView, ferreroTextView, kinderTextView, mandmsTextView, snickersTextView;
 
     @Override
-    public void onBindViewHolder(@NonNull ChocolateViewHolder holder, int position) {
-        String chocolateName = chocolateList.get(position);
-        holder.chocolateNameTextView.setText(chocolateName);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_choclates);
 
-        holder.itemView.setOnClickListener(v -> {
-            // Logik untuk membuka aktiviti baru berdasarkan nama coklat
-            if (chocolateName.equalsIgnoreCase("KitKat")) {
-                // Ganti KitKatActivity.class dengan aktiviti sebenar anda
-                // Intent intent = new Intent(context, KitKatActivity.class);
-                // context.startActivity(intent);
-                android.widget.Toast.makeText(context, "Membuka halaman " + chocolateName, android.widget.Toast.LENGTH_SHORT).show();
-            } else if (chocolateName.equalsIgnoreCase("Cadbury")) {
-                // Ganti dengan aktiviti sebenar anda
-                android.widget.Toast.makeText(context, "Membuka halaman " + chocolateName, android.widget.Toast.LENGTH_SHORT).show();
+        ImageView backButton = findViewById(R.id.btnBack);
+        searchEditText = findViewById(R.id.searchEditText);
+        kitkatTextView = findViewById(R.id.chocolate_kitkat);
+        cadburyTextView = findViewById(R.id.chocolate_cadbury);
+        tobleroneTextView = findViewById(R.id.chocolate_toblerone);
+        ferreroTextView = findViewById(R.id.chocolate_ferrero);
+        kinderTextView = findViewById(R.id.chocolate_kinder);
+        mandmsTextView = findViewById(R.id.chocolate_mnm);
+        snickersTextView = findViewById(R.id.chocolate_snickers);
+
+
+        backButton.setOnClickListener(v -> finish());
+
+        setupClickListeners();
+
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterList(s.toString());
             }
-            // Tambah 'else if' lain untuk coklat yang berbeza
+
+            @Override
+            public void afterTextChanged(Editable s) {}
         });
     }
 
-    @Override
-    public int getItemCount() {
-        return chocolateList.size();
+    /**
+     * Menetapkan OnClickListener untuk setiap item coklat.
+     * Setiap listener kini membuka halaman butiran produk yang spesifik.
+     */
+    private void setupClickListeners() {
+
+        kitkatTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(ChoclatesActivity.this, KitkatActivity.class);
+            startActivity(intent);
+        });
+
+        cadburyTextView.setOnClickListener(v -> {
+            // Pastikan nama kelas aktiviti anda betul, contoh: CadburyActivity atau CadburryActivity
+            Intent intent = new Intent(ChoclatesActivity.this, CadburryActivity.class);
+            startActivity(intent);
+        });
+
+        tobleroneTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(ChoclatesActivity.this, TobleroneActivity.class);
+            startActivity(intent);
+        });
+
+        ferreroTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(ChoclatesActivity.this, FerreroActivity.class);
+            startActivity(intent);
+        });
+
+        kinderTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(ChoclatesActivity.this, KinderBuenoActivity.class);
+            startActivity(intent);
+        });
+
+        mandmsTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(ChoclatesActivity.this, MNMActivity.class);
+            startActivity(intent);
+        });
+
+        snickersTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(ChoclatesActivity.this, SnickersActivity.class);
+            startActivity(intent);
+        });
     }
 
-    // Fungsi carian
-    @Override
-    public Filter getFilter() {
-        return chocolateFilter;
+    /**
+     * Menapis senarai berdasarkan input carian pengguna.
+     * @param searchText Teks yang ditaip oleh pengguna.
+     */
+    private void filterList(String searchText) {
+        String query = searchText.toLowerCase().trim();
+        filterItem(kitkatTextView, "kitkat", query);
+        filterItem(cadburyTextView, "cadbury", query);
+        filterItem(tobleroneTextView, "toblerone", query);
+        filterItem(ferreroTextView, "ferrero rocher", query);
+        filterItem(kinderTextView, "kinder bueno", query);
+        filterItem(mandmsTextView, "m and m's", query);
+        filterItem(snickersTextView, "snickers", query);
     }
 
-    private Filter chocolateFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<String> filteredList = new ArrayList<>();
-
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(chocolateListFull);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-                for (String item : chocolateListFull) {
-                    if (item.toLowerCase().contains(filterPattern)) {
-                        filteredList.add(item);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            chocolateList.clear();
-            chocolateList.addAll((List) results.values);
-            notifyDataSetChanged();
-        }
-    };
-
-    // ViewHolder
-    public static class ChocolateViewHolder extends RecyclerView.ViewHolder {
-        TextView chocolateNameTextView;
-
-        public ChocolateViewHolder(@NonNull View itemView) {
-            super(itemView);
-            chocolateNameTextView = itemView.findViewById(R.id.textViewChocolateName);
+    /**
+     * Fungsi bantuan untuk menunjukkan atau menyembunyikan satu item.
+     * @param textView Komponen TextView yang hendak ditapis.
+     * @param itemName Nama item dalam huruf kecil.
+     * @param query Teks carian dalam huruf kecil.
+     */
+    private void filterItem(TextView textView, String itemName, String query) {
+        if (itemName.contains(query)) {
+            textView.setVisibility(View.VISIBLE);
+        } else {
+            textView.setVisibility(View.GONE);
         }
     }
+
+    // Fungsi openProductDetail() telah dibuang kerana ia tidak lagi diperlukan
+    // dan digantikan dengan Intent yang spesifik dalam setupClickListeners().
 }
