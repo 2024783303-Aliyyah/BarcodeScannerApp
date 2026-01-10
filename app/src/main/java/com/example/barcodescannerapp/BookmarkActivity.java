@@ -1,8 +1,8 @@
 // Fail: BookmarkActivity.java
 package com.example.barcodescannerapp;
 
-import android.content.Context; // Import Context
-import android.content.Intent; // Import Intent
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,8 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class BookmarkActivity extends AppCompatActivity {
 
@@ -27,6 +31,10 @@ public class BookmarkActivity extends AppCompatActivity {
     private ArrayList<String> bookmarkedItems;
     private EditText bookmarkSearchEditText;
 
+    // ====================== TAMBAH PEMBOLEH UBAH INI ======================
+    private BookmarkManager bookmarkManager;
+    private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +42,13 @@ public class BookmarkActivity extends AppCompatActivity {
 
         bookmarksRecyclerView = findViewById(R.id.bookmarksRecyclerView);
         bookmarkSearchEditText = findViewById(R.id.bookmarkSearchEditText);
+        bottomNavigationView = findViewById(R.id.bottom);
         bookmarksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // ====================== INISIALISASI BOOKMARK MANAGER ======================
+        bookmarkManager = new BookmarkManager(this);
+
+        // ====================== UBAH FUNGSI INI UNTUK GUNA DATA SEBENAR ======================
         loadBookmarkedItems();
 
         adapter = new BookmarkAdapter(bookmarkedItems);
@@ -46,32 +59,51 @@ public class BookmarkActivity extends AppCompatActivity {
         bookmarkSearchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 adapter.getFilter().filter(s);
             }
-
             @Override
             public void afterTextChanged(Editable s) {}
         });
+
+        // ====================== AKTIFKAN NAVIGASI BAWAH DI SINI JUGA ======================
+        bottomNavigationView.setSelectedItemId(R.id.nav_bookmarks); // Set item Bookmark sebagai aktif
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) {
+                startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
+                return true;
+            }
+             else if (itemId == R.id.nav_bookmarks) {
+                // Sudah berada di halaman ini
+                return true;
+            }
+
+            return false;
+        });
+
+
+    }
+    public void goBack(View view)
+    {
+        finish();
     }
 
+    // ====================== KEMAS KINI FUNGSI INI ======================
     private void loadBookmarkedItems() {
-        bookmarkedItems = new ArrayList<>();
-        // Data dummy ini perlu digantikan dengan data sebenar dari SharedPreferences atau Database
-        bookmarkedItems.add("Maggie"); // Gunakan nama yang konsisten dengan logik carian
-        bookmarkedItems.add("KitKat");
-        bookmarkedItems.add("Milo Activ-Go");
-        bookmarkedItems.add("Nescafe Classic");
-        bookmarkedItems.add("Gardenia Original Classic");
-        bookmarkedItems.add("Coca-Cola");
+        // Ambil data sebenar dari BookmarkManager
+        Set<String> bookmarksSet = bookmarkManager.getBookmarks();
+        // Tukar Set kepada ArrayList untuk digunakan oleh Adapter
+        bookmarkedItems = new ArrayList<>(bookmarksSet);
     }
 }
 
-// ====================== KELAS ADAPTER (DENGAN FUNGSI KLIK) ======================
+// Kelas Adapter (tiada perubahan, kekal sama)
 class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.BookmarkViewHolder> implements Filterable {
-
+    // ... kod sedia ada anda di sini ...
     private ArrayList<String> items;
     private ArrayList<String> itemsFull;
 
@@ -92,25 +124,15 @@ class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.BookmarkViewH
         String productName = items.get(position);
         holder.productNameTextView.setText(productName);
 
-        // ====================== START OF FIX ======================
-        // Tambah OnClickListener pada setiap item dalam senarai
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 1. Dapatkan konteks (context) dari view yang diklik
                 Context context = v.getContext();
-
-                // 2. Cipta Intent untuk pergi ke SearchProductActivity
                 Intent intent = new Intent(context, SearchProductActivity.class);
-
-                // 3. Hantar nama produk yang diklik sebagai data tambahan
                 intent.putExtra("PRODUCT_NAME_FROM_BOOKMARK", productName);
-
-                // 4. Mulakan aktiviti
                 context.startActivity(intent);
             }
         });
-        // ======================= END OF FIX =======================
     }
 
     @Override
@@ -157,4 +179,6 @@ class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.BookmarkViewH
             productNameTextView = itemView.findViewById(R.id.bookmarked_product_name);
         }
     }
+
+
 }
