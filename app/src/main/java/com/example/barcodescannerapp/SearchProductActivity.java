@@ -122,7 +122,35 @@ public class SearchProductActivity extends AppCompatActivity {
             // Paparkan kad (kekal sama)
             productDetailsContainer.setVisibility(View.VISIBLE);
 
-        } else {
+        }
+        else if (productNameQuery.equalsIgnoreCase("vico")) {
+
+            productImage.setImageResource(R.drawable.kitkat);
+            productName.setText("VICO");
+
+            String details = "Product Name: Vico\n" +
+                    "Company: Maestro Swiss, VICO Mfg\n" +
+                    "Category: Food & Instant Noodles\n" +
+                    "Country of Origin: Malaysia\n";
+
+            // 2. Bina teks status dengan tag warna HTML
+            String statusText = "Status : <font color='#8fce00'>BOYCOTT!</font>"; // #FF0000 adalah kod warna merah
+
+            // 3. Gabungkan teks butiran dan teks status
+            String fullDetailsText = details + statusText;
+
+            // 4. Guna Html.fromHtml untuk memaparkan teks yang telah diformat
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                productDetails.setText(Html.fromHtml(fullDetailsText, Html.FROM_HTML_MODE_LEGACY));
+            } else {
+                productDetails.setText(Html.fromHtml(fullDetailsText));
+            }
+            // ======================= END OF FIX =======================
+
+            // Paparkan kad (kekal sama)
+            productDetailsContainer.setVisibility(View.VISIBLE);
+
+        }else {
             // Jika produk tidak ditemui
             Toast.makeText(this, "Product not found!", Toast.LENGTH_SHORT).show();
             productDetailsContainer.setVisibility(View.GONE);
