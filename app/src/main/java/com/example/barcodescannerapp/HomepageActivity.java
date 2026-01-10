@@ -27,7 +27,16 @@ public class HomepageActivity extends AppCompatActivity {
         Intent intent = new Intent(HomepageActivity.this, MainScanProductActivity.class);
         startActivity(intent);
     });
-}
+
+        // Listener untuk butang "Categories"
+        findViewById(R.id.card_orange).setOnClickListener(v -> {
+            // Cipta Intent untuk membuka CategoriesMainPage
+            Intent intent = new Intent(HomepageActivity.this, MainCategoriesPage.class);
+            // Mulakan aktiviti baru
+            startActivity(intent);
+        });
+
+    }
 
     public void goBack(View view)
     {

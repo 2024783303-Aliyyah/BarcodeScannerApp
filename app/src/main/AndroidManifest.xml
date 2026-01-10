@@ -17,6 +17,11 @@
             android:name=".MainScanProductActivity"
             android:exported="false" />
 
+
+        <activity
+            android:name=".MainCategoriesPage"
+            android:exported="false" />
+
         <activity
             android:name=".HomepageActivity"
             android:exported="false" />
