@@ -19,41 +19,35 @@ public class MainScanProductActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mainscanproduct);
 
-        if (findViewById(R.id.main) != null) {
-            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return insets;
-            });
-        }
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
-        // Button Back
+        // Back
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
-        // Button Scan Product - Panggil dialog lakonan
-        findViewById(R.id.cardScan).setOnClickListener(v -> showCameraPermissionDialog());
+        // Scan Product → fake permission dialog
+        findViewById(R.id.cardScan).setOnClickListener(v -> showFakePermissionDialog());
 
-        // Button Insert Barcode
+        // Insert Barcode
         findViewById(R.id.cardInsert).setOnClickListener(v ->
                 Toast.makeText(this, "Insert Barcode clicked", Toast.LENGTH_SHORT).show()
         );
     }
 
-    // Dialog lakonan (Fake Permission)
-    private void showCameraPermissionDialog() {
+    private void showFakePermissionDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Permission Required")
-                .setMessage("This app needs access to your camera to scan barcodes. Allow permission?")
+                .setTitle("Camera Permission")
+                .setMessage("Allow camera access to scan product?")
+                .setCancelable(false)
                 .setPositiveButton("Allow", (dialog, which) -> {
-                    // Tekan Allow, terus "lompat" ke page kamera
-                    openScanner();
+                    startActivity(
+                            new Intent(MainScanProductActivity.this, ScanProductCamera.class)
+                    );
                 })
                 .setNegativeButton("Deny", (dialog, which) -> dialog.dismiss())
                 .show();
-    }
-
-    private void openScanner() {
-        Intent intent = new Intent(MainScanProductActivity.this, ScanProductCamera.class);
-        startActivity(intent);
     }
 }
