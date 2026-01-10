@@ -125,7 +125,7 @@ public class SearchProductActivity extends AppCompatActivity {
         }
         else if (productNameQuery.equalsIgnoreCase("vico")) {
 
-            productImage.setImageResource(R.drawable.kitkat);
+            productImage.setImageResource(R.drawable.vico);
             productName.setText("VICO");
 
             String details = "Product Name: Vico\n" +
