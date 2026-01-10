@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarcodeScannerApp">
         <activity
+            android:name=".BeveragesActivity"
+            android:exported="false" />
+        <activity
             android:name=".SnickersActivity"
             android:exported="false" />
         <activity

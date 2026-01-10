@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDEBC5"
+    android:fitsSystemWindows="true"
+    tools:context=".BeveragesActivity">
+
+    <!-- Back Button -->
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="12dp"
+        android:src="@drawable/backbutton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"/>
+
+    <!-- Page Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BEVERAGES"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnBack" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#000000"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Search Section (DIKEKALKAN) -->
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:autofillHints="name"
+            app:backgroundTint="#FFFFFF"
+            android:hint="Search Beverages"
+            android:inputType="text"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColorHint="#757575"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="search"
+            android:textAllCaps="false"
+            android:textColor="#3E2723"
+            app:icon="@android:drawable/ic_menu_search"
+            app:iconTint="#3E2723" />
+    </LinearLayout>
+
+    <!-- Background Card for the List -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="#F6E0E9"
+        app:cardCornerRadius="20dp"
+        app:strokeColor="#ED5794"
+        app:strokeWidth="2dp"
+        app:layout_constraintTop_toBottomOf="@id/searchLayout"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- ScrollView untuk senarai tetap -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/chocolateListContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Setiap TextView mewakili satu item -->
+                <TextView
+                    android:id="@+id/chocolate_kitkat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1. Pepsi"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/chocolate_cadbury"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2. Cola-Cola"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/chocolate_toblerone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3. 7Up"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/chocolate_ferrero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4. Mountain Dew"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/chocolate_kinder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="5. Miranda"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/chocolate_mnm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="6. Sprite"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+
+                <TextView
+                    android:id="@+id/chocolate_snickers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7. Fanta"
+                    android:textSize="20sp"
+                    android:textColor="#1A1818"
+                    android:textStyle="bold"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"/>
+
+
+            </LinearLayout>
+        </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottomNavCard"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#F1F093"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:itemIconTint="#ED5794"
+            app:itemTextColor="#000000"
+            app:menu="@menu/bottom_navigation"
+            app:labelVisibilityMode="labeled"
+            app:itemPaddingTop="10dp"
+            app:itemPaddingBottom="5dp"
+            app:itemIconSize="22dp"/>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
