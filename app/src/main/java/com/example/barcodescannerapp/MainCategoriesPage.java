@@ -31,24 +31,25 @@ public class MainCategoriesPage extends AppCompatActivity {
 
         // ========== BAHAGIAN YANG DIUBAH SUAI & DIBETULKAN ==========
 
-        // 1. BUANG kod yang menyebabkan loop tidak terhingga.
-        // startActivity(new Intent(MainCategoriesPage.this, MainCategoriesPage.class)); // BARIS INI TELAH DIBUANG
-
-        // 2. Cari kad 'Chocolates' dari fail layout menggunakan ID-nya.
-        //    (Pastikan dalam activity_main_categories.xml, kad coklat mempunyai android:id="@+id/cardChocolates")
+        // 1. Kad 'Chocolates'
         MaterialCardView chocolatesCard = findViewById(R.id.cardChocolates);
-
-        // 3. Tetapkan OnClickListener untuk membuka ChoclatesActivity.
         chocolatesCard.setOnClickListener(v -> {
-            // Cipta Intent untuk membuka ChoclatesActivity.
             Intent intent = new Intent(MainCategoriesPage.this, ChoclatesActivity.class);
-
-            // Mulakan aktiviti baru (buka halaman Choclates).
             startActivity(intent);
         });
 
-        // Anda juga boleh tambah listener untuk kad lain di sini. Contoh:
-        // MaterialCardView beveragesCard = findViewById(R.id.cardBeverages);
-        // beveragesCard.setOnClickListener(v -> { ... });
+        // 2. Kad 'Beverages'
+        MaterialCardView beveragesCard = findViewById(R.id.cardBeverages);
+        beveragesCard.setOnClickListener(v -> {
+            Intent intent = new Intent(MainCategoriesPage.this, BeveragesActivity.class);
+            startActivity(intent);
+        });
+
+        // 3. Kad 'Restaurants'
+        MaterialCardView restaurantsCard = findViewById(R.id.cardRestaurants);
+        restaurantsCard.setOnClickListener(v -> {
+            Intent intent = new Intent(MainCategoriesPage.this, RestaurantActivity.class);
+            startActivity(intent);
+        });
     }
 }

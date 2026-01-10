@@ -9,6 +9,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarcodeScannerApp">
         <activity
+            android:name=".DominosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".McDonaldsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StarbucksActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RestaurantActivity"
+            android:exported="false" />
+        <activity
             android:name=".BeveragesActivity"
             android:exported="false" />
         <activity
