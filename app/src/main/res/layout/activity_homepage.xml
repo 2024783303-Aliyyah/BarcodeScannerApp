@@ -80,6 +80,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.45"
+
         app:layout_constraintVertical_chainStyle="packed" >
 
         <ImageView
@@ -117,7 +118,8 @@
         app:layout_constraintBottom_toTopOf="@+id/card_orange"
         app:layout_constraintEnd_toEndOf="@+id/card_yellow"
         app:layout_constraintStart_toStartOf="@+id/card_yellow"
-        app:layout_constraintTop_toBottomOf="@+id/card_yellow" >
+        app:layout_constraintTop_toBottomOf="@+id/card_yellow"
+        android:onClick="openMenu">
 
         <ImageView
             android:id="@+id/imageView6"
@@ -154,7 +156,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/card_yellow"
         app:layout_constraintStart_toStartOf="@+id/card_yellow"
-        app:layout_constraintTop_toBottomOf="@+id/card_grey" >
+        app:layout_constraintTop_toBottomOf="@+id/card_grey"
+        android:onClick="openMenu">
 
         <ImageView
             android:id="@+id/imageView8"

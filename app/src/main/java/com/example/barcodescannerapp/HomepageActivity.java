@@ -29,6 +29,14 @@ public class HomepageActivity extends AppCompatActivity {
     });
 
         // Listener untuk butang "Categories"
+        findViewById(R.id.card_grey).setOnClickListener(v -> {
+            // Cipta Intent untuk membuka CategoriesMainPage
+            Intent intent = new Intent(HomepageActivity.this, SearchProductActivity.class);
+            // Mulakan aktiviti baru
+            startActivity(intent);
+        });
+
+        // Listener untuk butang "Categories"
         findViewById(R.id.card_orange).setOnClickListener(v -> {
             // Cipta Intent untuk membuka CategoriesMainPage
             Intent intent = new Intent(HomepageActivity.this, MainCategoriesPage.class);
@@ -41,5 +49,11 @@ public class HomepageActivity extends AppCompatActivity {
     public void goBack(View view)
     {
         finish();
+    }
+
+    public void openMenu(View view)
+    {
+
+
     }
 }
