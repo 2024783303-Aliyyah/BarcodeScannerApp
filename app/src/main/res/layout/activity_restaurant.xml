@@ -8,13 +8,14 @@
     android:layout_height="match_parent"
     android:background="#CDEBC5"
     android:fitsSystemWindows="true"
-    tools:context=".BeveragesActivity">
+    tools:context=".RestaurantActivity">
 
-    <!-- Back Button -->
+    <!-- Header Section -->
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:padding="12dp"
         android:src="@drawable/backbutton"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BEVERAGES"
+        android:text="RESTAURANTS"
         android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -63,9 +64,8 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:autofillHints="name"
-            app:backgroundTint="#FFFFFF"
-            android:hint="Search Beverages"
+            android:background="@android:color/white"
+            android:hint="Search Restaurants"
             android:inputType="text"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
@@ -103,51 +103,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- ScrollView untuk senarai tetap -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/bevergesListContainer"
+                android:id="@+id/restaurantListContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- ======== PERUBAHAN DI SINI ======== -->
-                <!-- Item Pepsi -->
                 <TextView
-                    android:id="@+id/beverages_pepsi"
+                    android:id="@+id/restaurant_starbucks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1. Pepsi"
+                    android:text="1. Starbucks"
                     android:textSize="20sp"
                     android:textColor="#1A1818"
                     android:textStyle="bold"
                     android:padding="12dp"
                     android:background="?android:attr/selectableItemBackground"/>
 
-                <!-- Item Fanta -->
                 <TextView
-                    android:id="@+id/beverages_fanta"
+                    android:id="@+id/restaurant_mcdonalds"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2. Fanta"
+                    android:text="2. McDonald's"
                     android:textSize="20sp"
                     android:textColor="#1A1818"
                     android:textStyle="bold"
                     android:padding="12dp"
                     android:layout_marginTop="8dp"
                     android:background="?android:attr/selectableItemBackground"/>
-                <!-- ======== TAMAT PERUBAHAN ======== -->
 
-                <!-- Item Sprite -->
                 <TextView
-                    android:id="@+id/beverages_sprite"
+                    android:id="@+id/restaurant_dominos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="3. Sprite"
+                    android:text="3. Domino's Pizza"
                     android:textSize="20sp"
                     android:textColor="#1A1818"
                     android:textStyle="bold"
@@ -159,12 +153,12 @@
         </ScrollView>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Bottom Navigation -->
+    <!-- Bottom Navigation Area -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomNavCard"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
+        android:layout_height="75dp"
+        android:layout_margin="12dp"
         app:cardCornerRadius="28dp"
         app:cardElevation="8dp"
         app:cardBackgroundColor="#F1F093"
@@ -175,15 +169,15 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             app:itemIconTint="#ED5794"
             app:itemTextColor="#000000"
             app:menu="@menu/bottom_navigation"
             app:labelVisibilityMode="labeled"
-            app:itemPaddingTop="10dp"
-            app:itemPaddingBottom="5dp"
-            app:itemIconSize="22dp"/>
+            app:itemIconSize="24dp"
+            app:itemPaddingTop="8dp"
+            app:itemPaddingBottom="8dp"/>
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
