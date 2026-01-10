@@ -33,6 +33,9 @@
             android:name=".ScanProductCamera"
             android:exported="false" />
         <activity
+            android:name=".ScanProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainScanProductActivity"
             android:exported="false" />
         <activity
