@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarcodeScannerApp">
         <activity
-            android:name=".HistoryActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -90,8 +90,8 @@
             android:name=".InsertBarcodeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true" />
+            android:name=".HistoryActivity"
+            android:exported="false" />
 
     </application>
 
