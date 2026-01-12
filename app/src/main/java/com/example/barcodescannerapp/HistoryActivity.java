@@ -1,31 +1,35 @@
 package com.example.barcodescannerapp;
 
-
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.Collections;
 import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
+
+    private RecyclerView historyRecyclerView;
+    private HistoryAdapter historyAdapter;
+    private HistoryManager historyManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_history);
 
-        ListView listView = findViewById(R.id.historyListView);
-        HistoryManager historyManager = new HistoryManager(this);
-        List<String> history = historyManager.getHistoryList();
+        historyManager = new HistoryManager(this);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, history);
-        listView.setAdapter(adapter);
+        // Use the new RecyclerView ID from your XML
+        historyRecyclerView = findViewById(R.id.history_recycler_view);
 
-        // Optional: Click a history item to search it again
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            // Logic to return to search page and search this item
-        });
+        List<String> historyItems = historyManager.getHistoryList(); // Assuming getHistoryList() is your method
+        Collections.reverse(historyItems); // Show most recent first
+
+        // Setup the RecyclerView
+        historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        historyAdapter = new HistoryAdapter(this, historyItems); // Use the new adapter
+        historyRecyclerView.setAdapter(historyAdapter);
     }
 }
+

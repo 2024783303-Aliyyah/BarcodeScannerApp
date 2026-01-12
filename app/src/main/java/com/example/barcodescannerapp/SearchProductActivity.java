@@ -1,5 +1,6 @@
 package com.example.barcodescannerapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,12 +30,14 @@ public class SearchProductActivity extends AppCompatActivity {
     private HistoryManager historyManager;
     private BookmarkManager bookmarkManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this); // Standard for Android 15/16
         setContentView(R.layout.activity_search_product);
 
+        searchEditText = findViewById(R.id.searchEditText);
         // Apply Insets for modern full-screen displays
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -47,7 +50,7 @@ public class SearchProductActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        searchEditText = findViewById(R.id.searchEditText);
+
         productDetailsContainer = findViewById(R.id.product_details_container);
         productImage = findViewById(R.id.product_image);
         productName = findViewById(R.id.product_name);
@@ -117,10 +120,23 @@ public class SearchProductActivity extends AppCompatActivity {
     }
 
     private void handleIntent(Intent intent) {
-        if (intent != null && intent.hasExtra("PRODUCT_NAME_FROM_BOOKMARK")) {
-            String name = intent.getStringExtra("PRODUCT_NAME_FROM_BOOKMARK");
-            searchEditText.setText(name);
-            searchForProduct(name);
+        if (intent == null) return;
+
+        String productNameFromHistory = null;
+
+        // Check if the intent has the extra from our HistoryAdapter
+        if (intent.hasExtra("PRODUCT_NAME")) {
+            productNameFromHistory = intent.getStringExtra("PRODUCT_NAME");
+        }
+        // Also check for the one from bookmarks
+        else if (intent.hasExtra("PRODUCT_NAME_FROM_BOOKMARK")) {
+            productNameFromHistory = intent.getStringExtra("PRODUCT_NAME_FROM_BOOKMARK");
+        }
+
+        // If we received a product name from either History or Bookmarks...
+        if (productNameFromHistory != null) {
+            searchEditText.setText(productNameFromHistory); // Put the name in the search bar
+            searchForProduct(productNameFromHistory);
         }
     }
 
