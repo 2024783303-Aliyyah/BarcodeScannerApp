@@ -8,19 +8,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BarcodeScannerApp">
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".FantaActivity"
             android:exported="false" />
-
         <activity
             android:name=".SpriteActivity"
             android:exported="false" />
-
         <activity
             android:name=".PepsiActivity"
             android:exported="false" />
-
         <activity
             android:name=".DominosActivity"
             android:exported="false" />
@@ -36,82 +41,58 @@
         <activity
             android:name=".BeveragesActivity"
             android:exported="false" />
-
         <activity
             android:name=".SnickersActivity"
             android:exported="false" />
-
         <activity
             android:name=".MNMActivity"
             android:exported="false" />
-
         <activity
             android:name=".TobleroneActivity"
             android:exported="false" />
-
         <activity
             android:name=".KinderBuenoActivity"
             android:exported="false" />
-
         <activity
             android:name=".FerreroActivity"
             android:exported="false" />
-
         <activity
             android:name=".CadburryActivity"
             android:exported="false" />
-
         <activity
             android:name=".ScanProductCamera"
             android:exported="false" />
-
         <activity
             android:name=".ScanProductActivity"
             android:exported="false" />
         <activity
             android:name=".MainScanProductActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainCategoriesPage"
             android:exported="false" />
-
         <activity
             android:name=".HomepageActivity"
             android:exported="false" />
-
         <activity
             android:name=".KitkatActivity"
             android:exported="false" />
-
         <activity
             android:name=".ChoclatesActivity"
             android:exported="false" />
-
         <activity
             android:name=".SearchProductActivity"
             android:exported="false" />
-
         <activity
             android:name=".BookmarkActivity"
             android:exported="false" />
-
         <activity
             android:name=".InsertBarcodeActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" />
 
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
