@@ -115,6 +115,10 @@ public class SearchProductActivity extends AppCompatActivity {
                 startActivity(new Intent(this, BookmarkActivity.class));
                 return true;
             }
+            else if (id == R.id.nav_resources){
+                startActivity(new Intent(this, ResourcesActivity.class));
+                return true;
+            }
             return false;
         });
     }

@@ -1,5 +1,6 @@
 package com.example.barcodescannerapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,12 +22,17 @@ public class HomepageActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+
+            // --- ADD THIS CODE ---
+            // Assuming your button has the ID "resources_button" in your XML layout
+
         });
 
     findViewById(R.id.card_yellow).setOnClickListener(v -> {
         Intent intent = new Intent(HomepageActivity.this, MainScanProductActivity.class);
         startActivity(intent);
     });
+
 
         // Listener untuk butang "Categories"
         findViewById(R.id.card_grey).setOnClickListener(v -> {
@@ -43,6 +49,7 @@ public class HomepageActivity extends AppCompatActivity {
             // Mulakan aktiviti baru
             startActivity(intent);
         });
+
 
     }
 
