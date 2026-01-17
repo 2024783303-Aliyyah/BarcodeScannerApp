@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
+import android.graphics.Color;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
 
@@ -32,6 +33,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         String productName = historyItems.get(position);
         holder.productNameTextView.setText(productName);
 
+        holder.productNameTextView.setTextColor(Color.BLACK);
         // ⭐ THIS IS THE CLICK ACTION ⭐
         holder.itemView.setOnClickListener(v -> {
             // 1. Create intent for the search page

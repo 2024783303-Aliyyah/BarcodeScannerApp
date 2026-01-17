@@ -1,7 +1,9 @@
+// Fail: SearchProductActivity.java
 package com.example.barcodescannerapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color; // <-- IMPORT BARU DITAMBAH DI SINI
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -26,7 +29,11 @@ public class SearchProductActivity extends AppCompatActivity {
     private EditText searchEditText;
     private ConstraintLayout productDetailsContainer;
     private ImageView productImage;
-    private TextView productName, productDetails;
+    private TextView productName; // Ini untuk tajuk besar "MAGGI"
+
+    // Pemboleh ubah untuk TextViews di dalam GridLayout
+    private TextView detailProductName, detailCompany, detailCategory, detailCountry, detailStatus;
+
     private HistoryManager historyManager;
     private BookmarkManager bookmarkManager;
 
@@ -34,7 +41,7 @@ public class SearchProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this); // Standard for Android 15/16
+        EdgeToEdge.enable(this); // Standard untuk Android 15/16
         setContentView(R.layout.activity_search_product);
 
         searchEditText = findViewById(R.id.searchEditText);
@@ -53,8 +60,13 @@ public class SearchProductActivity extends AppCompatActivity {
 
         productDetailsContainer = findViewById(R.id.product_details_container);
         productImage = findViewById(R.id.product_image);
-        productName = findViewById(R.id.product_name);
-        productDetails = findViewById(R.id.product_details);
+        productName = findViewById(R.id.product_name); // Tajuk utama
+
+        detailProductName = findViewById(R.id.detail_product_name);
+        detailCompany = findViewById(R.id.detail_company);
+        detailCategory = findViewById(R.id.detail_category);
+        detailCountry = findViewById(R.id.detail_country);
+        detailStatus = findViewById(R.id.detail_status);
 
         historyManager = new HistoryManager(this);
         bookmarkManager = new BookmarkManager(this);
@@ -73,39 +85,99 @@ public class SearchProductActivity extends AppCompatActivity {
         setupNavigation();
     }
 
+    // ====================== FUNGSI searchForProduct() DENGAN KOD WARNA TERUS ======================
     private void searchForProduct(String query) {
         if (query.isEmpty()) return;
 
         boolean found = false;
-        String details = "";
-        String status = "";
 
+        // Logik untuk "maggie"
         if (query.equalsIgnoreCase("maggie")) {
             productImage.setImageResource(R.drawable.maggie);
-            productName.setText("MAGGIE");
-            details = "Company: Nestlé\nCategory: Food\nOrigin: Switzerland\n";
-            status = "<font color='#FF0000'><b>BOYCOTT!</b></font>";
+            productName.setText("MAGGIE"); // Set tajuk besar
+
+            // Set butiran dalam GridLayout
+            detailProductName.setText("Maggie");
+            detailCompany.setText("Nestlé");
+            detailCategory.setText("Food & Instant Noodles");
+            detailCountry.setText("Switzerland");
+
+            // Set status dengan warna
+            detailStatus.setText("BOYCOTT!");
+            detailStatus.setTextColor(Color.RED); // DIUBAH: Guna kod warna terus
+
             found = true;
-        } else if (query.equalsIgnoreCase("vico")) {
+        }
+        // Logik untuk produk lain
+        else if (query.equalsIgnoreCase("vico")) {
             productImage.setImageResource(R.drawable.vico);
             productName.setText("VICO");
-            details = "Company: Maestro Swiss\nCategory: Drink\nOrigin: Malaysia\n";
-            status = "<font color='#4CAF50'><b>SAFE / SUPPORT</b></font>";
+
+            detailProductName.setText("Vico");
+            detailCompany.setText("Maestro Swiss");
+            detailCategory.setText("Drink");
+            detailCountry.setText("Malaysia");
+            detailStatus.setText("SAFE / SUPPORT");
+            detailStatus.setTextColor(Color.parseColor("#4CAF50")); // DIUBAH: Guna kod warna hijau yang lebih cantik
+
+            found = true;
+        }
+        else if (query.equalsIgnoreCase("kitkat")) {
+            productImage.setImageResource(R.drawable.kitkat);
+            productName.setText("KITKAT");
+
+            detailProductName.setText("KitKat");
+            detailCompany.setText("Nestlé");
+            detailCategory.setText("Chocolate");
+            detailCountry.setText("United Kingdom");
+            detailStatus.setText("BOYCOTT!");
+            detailStatus.setTextColor(Color.RED); // DIUBAH: Guna kod warna terus
+
+            found = true;
+        }
+        else if (query.equalsIgnoreCase("pepsi")) {
+            productImage.setImageResource(R.drawable.pepsi);
+            productName.setText("PEPSI");
+
+            detailProductName.setText("Pepsi");
+            detailCompany.setText("PepsiCo (Pepsi's flagship product");
+            detailCategory.setText("Carbonated cola soft drink");
+            detailCountry.setText("United State(Originally developed North Caronila in 1893)");
+            detailStatus.setText("BOYCOTT!");
+            detailStatus.setTextColor(Color.RED); // DIUBAH: Guna kod warna terus
+
+            found = true;
+        }
+        else if (query.equalsIgnoreCase("fanta")) {
+            productImage.setImageResource(R.drawable.fanta);
+            productName.setText("Fanta");
+
+            detailProductName.setText("Fanta");
+            detailCompany.setText("The Coca-Cola Company (brand a manufacturer)");
+            detailCategory.setText("Carbonated soft drink");
+            detailCountry.setText("Coca-Cola Deutschland");
+            detailStatus.setText("BOYCOTT!");
+            detailStatus.setTextColor(Color.RED); // DIUBAH: Guna kod warna terus
+
             found = true;
         }
 
+
+
+        // Tunjukkan atau sembunyikan kad berdasarkan hasil carian
         if (found) {
             historyManager.addToHistory(query.toUpperCase());
-            productDetails.setText(Html.fromHtml(details + "Status: " + status, Html.FROM_HTML_MODE_LEGACY));
-            productDetailsContainer.setVisibility(View.VISIBLE);
+            productDetailsContainer.setVisibility(View.VISIBLE); // Tunjukkan kad
         } else {
             Toast.makeText(this, "Product not found!", Toast.LENGTH_SHORT).show();
+            productDetailsContainer.setVisibility(View.GONE); // Sembunyikan jika tidak jumpa
         }
     }
+    // ===============================================================================
 
     private void setupNavigation() {
         BottomNavigationView nav = findViewById(R.id.bottom);
-        nav.setSelectedItemId(R.id.nav_home); // Assuming this is the search activity
+        // Tidak perlu setSelectedItemId di sini jika ini bukan halaman utama
         nav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_history) {
@@ -119,6 +191,11 @@ public class SearchProductActivity extends AppCompatActivity {
                 startActivity(new Intent(this, ResourcesActivity.class));
                 return true;
             }
+            // Tambah ini untuk kembali ke Home
+            else if (id == R.id.nav_home){
+                startActivity(new Intent(this, HomepageActivity.class));
+                return true;
+            }
             return false;
         });
     }
@@ -128,20 +205,24 @@ public class SearchProductActivity extends AppCompatActivity {
 
         String productNameFromHistory = null;
 
-        // Check if the intent has the extra from our HistoryAdapter
         if (intent.hasExtra("PRODUCT_NAME")) {
             productNameFromHistory = intent.getStringExtra("PRODUCT_NAME");
         }
-        // Also check for the one from bookmarks
         else if (intent.hasExtra("PRODUCT_NAME_FROM_BOOKMARK")) {
             productNameFromHistory = intent.getStringExtra("PRODUCT_NAME_FROM_BOOKMARK");
         }
 
-        // If we received a product name from either History or Bookmarks...
         if (productNameFromHistory != null) {
-            searchEditText.setText(productNameFromHistory); // Put the name in the search bar
+            searchEditText.setText(productNameFromHistory);
             searchForProduct(productNameFromHistory);
         }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleIntent(intent);
     }
 
     public void goBack(View view) { finish(); }
