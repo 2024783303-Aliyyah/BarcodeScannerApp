@@ -2,7 +2,6 @@ package com.example.barcodescannerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -10,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ScanProductCamera extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class ScanProductCamera extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-        
+
         findViewById(R.id.btnClose).setOnClickListener(v -> finish());
 
         // KLIK PADA GAMBAR BARCODE
@@ -42,6 +43,37 @@ public class ScanProductCamera extends AppCompatActivity {
             imgBarcode.setOnClickListener(v -> {
                 Intent intent = new Intent(ScanProductCamera.this, ScanProductActivity.class);
                 startActivity(intent);
+            });
+        }
+
+        // Panggil fungsi navigation
+        setupNavigation();
+    }
+
+    private void setupNavigation() {
+        BottomNavigationView nav = findViewById(R.id.bottom);
+        if (nav != null) {
+            // Set item yang sedang aktif
+            nav.setSelectedItemId(R.id.nav_home);
+
+            nav.setOnItemSelectedListener(item -> {
+                int id = item.getItemId();
+
+                if (id == R.id.nav_home) {
+                    startActivity(new Intent(this, HomepageActivity.class));
+                    return true;
+                } else if (id == R.id.nav_history) {
+                    startActivity(new Intent(this, HistoryActivity.class));
+                    return true;
+                } else if (id == R.id.nav_bookmarks) {
+                    startActivity(new Intent(this, BookmarkActivity.class));
+                    return true;
+                } else if (id == R.id.nav_resources) {
+                    // Pastikan anda mempunyai ResourcesActivity.java
+                    startActivity(new Intent(this, ResourcesActivity.class));
+                    return true;
+                }
+                return false;
             });
         }
     }

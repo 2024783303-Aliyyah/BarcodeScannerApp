@@ -9,11 +9,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class RestaurantActivity extends AppCompatActivity {
 
     private EditText searchEditText;
     private TextView starbucksTextView, mcdonaldsTextView, dominosTextView;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class RestaurantActivity extends AppCompatActivity {
         starbucksTextView = findViewById(R.id.restaurant_starbucks);
         mcdonaldsTextView = findViewById(R.id.restaurant_mcdonalds);
         dominosTextView = findViewById(R.id.restaurant_dominos);
+        bottomNavigationView = findViewById(R.id.bottom);
 
         // Button Back
         if (backButton != null) {
@@ -34,6 +37,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
         // Setup Klik Item
         setupClickListeners();
+        setupNavigation();
 
         // Logik Carian
         if (searchEditText != null) {
@@ -66,6 +70,29 @@ public class RestaurantActivity extends AppCompatActivity {
         if (dominosTextView != null) {
             dominosTextView.setOnClickListener(v ->
                     startActivity(new Intent(this, DominosActivity.class)));
+        }
+    }
+
+    private void setupNavigation() {
+        if (bottomNavigationView != null) {
+            bottomNavigationView.setSelectedItemId(R.id.nav_home);
+            bottomNavigationView.setOnItemSelectedListener(item -> {
+                int id = item.getItemId();
+                if (id == R.id.nav_home) {
+                    startActivity(new Intent(this, HomepageActivity.class));
+                    return true;
+                } else if (id == R.id.nav_history) {
+                    startActivity(new Intent(this, HistoryActivity.class));
+                    return true;
+                } else if (id == R.id.nav_bookmarks) {
+                    startActivity(new Intent(this, BookmarkActivity.class));
+                    return true;
+                } else if (id == R.id.nav_resources) {
+                    startActivity(new Intent(this, ResourcesActivity.class));
+                    return true;
+                }
+                return false;
+            });
         }
     }
 

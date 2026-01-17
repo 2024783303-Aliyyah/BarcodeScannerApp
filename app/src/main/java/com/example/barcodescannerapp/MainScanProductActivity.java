@@ -3,7 +3,6 @@ package com.example.barcodescannerapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -12,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
 
 public class MainScanProductActivity extends AppCompatActivity {
@@ -34,38 +34,56 @@ public class MainScanProductActivity extends AppCompatActivity {
         // Scan Product → fake permission dialog
         findViewById(R.id.cardScan).setOnClickListener(v -> showFakePermissionDialog());
 
-        // ====================== PEMBETULAN UTAMA DI SINI ======================
-        // 1. Cari MaterialCardView dengan ID 'cardInsert'
+        // Insert Barcode
         MaterialCardView insertBarcodeCard = findViewById(R.id.cardInsert);
+        if (insertBarcodeCard != null) {
+            insertBarcodeCard.setOnClickListener(v -> openInsertBarcodeActivity(v));
+        }
 
-        // 2. Tetapkan OnClickListener secara programatik
-        insertBarcodeCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Panggil kaedah anda yang sedia ada
-                openInsertBarcodeActivity(v);
-            }
-        });
-
+        // Panggil fungsi navigation
+        setupNavigation();
     }
 
     public void openInsertBarcodeActivity(View view) {
-        // 1. Cipta satu Intent untuk membuka InsertBarcodeActivity.
-        //    Pastikan anda mempunyai satu aktiviti bernama 'InsertBarcodeActivity.java'.
         Intent intent = new Intent(this, InsertBarcodeActivity.class);
-
-        // 2. Mulakan aktiviti tersebut.
         startActivity(intent);
     }
+
+    private void setupNavigation() {
+        BottomNavigationView nav = findViewById(R.id.bottom);
+        if (nav != null) {
+            // Set item yang sedang aktif (contoh: Home)
+            nav.setSelectedItemId(R.id.nav_home); 
+
+            nav.setOnItemSelectedListener(item -> {
+                int id = item.getItemId();
+                
+                if (id == R.id.nav_home) {
+                    startActivity(new Intent(this, HomepageActivity.class));
+                    return true;
+                } else if (id == R.id.nav_history) {
+                    startActivity(new Intent(this, HistoryActivity.class));
+                    return true;
+                } else if (id == R.id.nav_bookmarks) {
+                    startActivity(new Intent(this, BookmarkActivity.class));
+                    return true;
+                } else if (id == R.id.nav_resources) {
+                    startActivity(new Intent(this, ResourcesActivity.class));
+                    return true;
+
+                }
+                return false;
+            });
+        }
+    }
+
     private void showFakePermissionDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Camera Permission")
-                .setMessage("Allow camera access to scan product?")
+                .setMessage("This app needs access to your camera to scan barcodes. Allow permission?")
                 .setCancelable(false)
                 .setPositiveButton("Allow", (dialog, which) -> {
-                    startActivity(
-                            new Intent(MainScanProductActivity.this, ScanProductCamera.class)
-                    );
+                    startActivity(new Intent(MainScanProductActivity.this, ScanProductCamera.class));
                 })
                 .setNegativeButton("Deny", (dialog, which) -> dialog.dismiss())
                 .show();

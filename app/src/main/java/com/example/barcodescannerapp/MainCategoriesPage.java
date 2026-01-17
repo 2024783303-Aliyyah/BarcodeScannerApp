@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
 
 public class MainCategoriesPage extends AppCompatActivity {
@@ -17,39 +18,77 @@ public class MainCategoriesPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_categories);
 
-        // Boleh kekalkan kod padding sistem ini
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Kod padding sistem
+        View mainView = findViewById(R.id.main);
+        if (mainView != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
+        }
 
         // Fungsi untuk butang kembali (back button)
         ImageView backButton = findViewById(R.id.btnBack);
-        backButton.setOnClickListener(v -> finish());
+        if (backButton != null) {
+            backButton.setOnClickListener(v -> finish());
+        }
 
-
-        // ========== BAHAGIAN YANG DIUBAH SUAI & DIBETULKAN ==========
-
-        // 1. Kad 'Chocolates'
+        // Kad 'Chocolates'
         MaterialCardView chocolatesCard = findViewById(R.id.cardChocolates);
-        chocolatesCard.setOnClickListener(v -> {
-            Intent intent = new Intent(MainCategoriesPage.this, ChoclatesActivity.class);
-            startActivity(intent);
-        });
+        if (chocolatesCard != null) {
+            chocolatesCard.setOnClickListener(v -> {
+                Intent intent = new Intent(MainCategoriesPage.this, ChoclatesActivity.class);
+                startActivity(intent);
+            });
+        }
 
-        // 2. Kad 'Beverages'
+        // Kad 'Beverages'
         MaterialCardView beveragesCard = findViewById(R.id.cardBeverages);
-        beveragesCard.setOnClickListener(v -> {
-            Intent intent = new Intent(MainCategoriesPage.this, BeveragesActivity.class);
-            startActivity(intent);
-        });
+        if (beveragesCard != null) {
+            beveragesCard.setOnClickListener(v -> {
+                Intent intent = new Intent(MainCategoriesPage.this, BeveragesActivity.class);
+                startActivity(intent);
+            });
+        }
 
-        // 3. Kad 'Restaurants'
+        // Kad 'Restaurants'
         MaterialCardView restaurantsCard = findViewById(R.id.cardRestaurants);
-        restaurantsCard.setOnClickListener(v -> {
-            Intent intent = new Intent(MainCategoriesPage.this, RestaurantActivity.class);
-            startActivity(intent);
-        });
+        if (restaurantsCard != null) {
+            restaurantsCard.setOnClickListener(v -> {
+                Intent intent = new Intent(MainCategoriesPage.this, RestaurantActivity.class);
+                startActivity(intent);
+            });
+        }
+
+        // Panggil fungsi navigation
+        setupNavigation();
+    }
+
+    private void setupNavigation() {
+        BottomNavigationView nav = findViewById(R.id.bottom);
+        if (nav != null) {
+            // Set item yang sedang aktif (Categories selalunya tiada item menu khusus, tapi boleh set Home)
+            nav.setSelectedItemId(R.id.nav_home);
+
+            nav.setOnItemSelectedListener(item -> {
+                int id = item.getItemId();
+
+                if (id == R.id.nav_home) {
+                    startActivity(new Intent(this, HomepageActivity.class));
+                    return true;
+                } else if (id == R.id.nav_history) {
+                    startActivity(new Intent(this, HistoryActivity.class));
+                    return true;
+                } else if (id == R.id.nav_bookmarks) {
+                    startActivity(new Intent(this, BookmarkActivity.class));
+                    return true;
+                } else if (id == R.id.nav_resources) {
+                    startActivity(new Intent(this, ResourcesActivity.class));
+                    return true;
+                }
+                return false;
+            });
+        }
     }
 }

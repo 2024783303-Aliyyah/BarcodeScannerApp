@@ -1,4 +1,4 @@
-package com.example.barcodescannerapp; // Pastikan nama pakej anda betul
+package com.example.barcodescannerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +9,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ChoclatesActivity extends AppCompatActivity {
 
     private EditText searchEditText;
     private TextView kitkatTextView, cadburyTextView, tobleroneTextView, ferreroTextView, kinderTextView, mandmsTextView, snickersTextView;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,73 +31,78 @@ public class ChoclatesActivity extends AppCompatActivity {
         kinderTextView = findViewById(R.id.chocolate_kinder);
         mandmsTextView = findViewById(R.id.chocolate_mnm);
         snickersTextView = findViewById(R.id.chocolate_snickers);
+        bottomNavigationView = findViewById(R.id.bottom);
 
-
-        backButton.setOnClickListener(v -> finish());
+        if (backButton != null) {
+            backButton.setOnClickListener(v -> finish());
+        }
 
         setupClickListeners();
+        setupNavigation();
 
-        searchEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        if (searchEditText != null) {
+            searchEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filterList(s.toString());
-            }
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    filterList(s.toString());
+                }
 
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+        }
     }
 
-    /**
-     * Menetapkan OnClickListener untuk setiap item coklat.
-     * Setiap listener kini membuka halaman butiran produk yang spesifik.
-     */
     private void setupClickListeners() {
-
-        kitkatTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(ChoclatesActivity.this, KitkatActivity.class);
-            startActivity(intent);
-        });
-
-        cadburyTextView.setOnClickListener(v -> {
-            // Pastikan nama kelas aktiviti anda betul, contoh: CadburyActivity atau CadburryActivity
-            Intent intent = new Intent(ChoclatesActivity.this, CadburryActivity.class);
-            startActivity(intent);
-        });
-
-        tobleroneTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(ChoclatesActivity.this, TobleroneActivity.class);
-            startActivity(intent);
-        });
-
-        ferreroTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(ChoclatesActivity.this, FerreroActivity.class);
-            startActivity(intent);
-        });
-
-        kinderTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(ChoclatesActivity.this, KinderBuenoActivity.class);
-            startActivity(intent);
-        });
-
-        mandmsTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(ChoclatesActivity.this, MNMActivity.class);
-            startActivity(intent);
-        });
-
-        snickersTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(ChoclatesActivity.this, SnickersActivity.class);
-            startActivity(intent);
-        });
+        if (kitkatTextView != null) {
+            kitkatTextView.setOnClickListener(v -> startActivity(new Intent(this, KitkatActivity.class)));
+        }
+        if (cadburyTextView != null) {
+            cadburyTextView.setOnClickListener(v -> startActivity(new Intent(this, CadburryActivity.class)));
+        }
+        if (tobleroneTextView != null) {
+            tobleroneTextView.setOnClickListener(v -> startActivity(new Intent(this, TobleroneActivity.class)));
+        }
+        if (ferreroTextView != null) {
+            ferreroTextView.setOnClickListener(v -> startActivity(new Intent(this, FerreroActivity.class)));
+        }
+        if (kinderTextView != null) {
+            kinderTextView.setOnClickListener(v -> startActivity(new Intent(this, KinderBuenoActivity.class)));
+        }
+        if (mandmsTextView != null) {
+            mandmsTextView.setOnClickListener(v -> startActivity(new Intent(this, MNMActivity.class)));
+        }
+        if (snickersTextView != null) {
+            snickersTextView.setOnClickListener(v -> startActivity(new Intent(this, SnickersActivity.class)));
+        }
     }
 
-    /**
-     * Menapis senarai berdasarkan input carian pengguna.
-     * @param searchText Teks yang ditaip oleh pengguna.
-     */
+    private void setupNavigation() {
+        if (bottomNavigationView != null) {
+            bottomNavigationView.setSelectedItemId(R.id.nav_home);
+            bottomNavigationView.setOnItemSelectedListener(item -> {
+                int id = item.getItemId();
+                if (id == R.id.nav_home) {
+                    startActivity(new Intent(this, HomepageActivity.class));
+                    return true;
+                } else if (id == R.id.nav_history) {
+                    startActivity(new Intent(this, HistoryActivity.class));
+                    return true;
+                } else if (id == R.id.nav_bookmarks) {
+                    startActivity(new Intent(this, BookmarkActivity.class));
+                    return true;
+                } else if (id == R.id.nav_resources) {
+                    startActivity(new Intent(this, ResourcesActivity.class));
+                    return true;
+                }
+                return false;
+            });
+        }
+    }
+
     private void filterList(String searchText) {
         String query = searchText.toLowerCase().trim();
         filterItem(kitkatTextView, "kitkat", query);
@@ -107,20 +114,9 @@ public class ChoclatesActivity extends AppCompatActivity {
         filterItem(snickersTextView, "snickers", query);
     }
 
-    /**
-     * Fungsi bantuan untuk menunjukkan atau menyembunyikan satu item.
-     * @param textView Komponen TextView yang hendak ditapis.
-     * @param itemName Nama item dalam huruf kecil.
-     * @param query Teks carian dalam huruf kecil.
-     */
     private void filterItem(TextView textView, String itemName, String query) {
-        if (itemName.contains(query)) {
-            textView.setVisibility(View.VISIBLE);
-        } else {
-            textView.setVisibility(View.GONE);
+        if (textView != null) {
+            textView.setVisibility(itemName.contains(query) ? View.VISIBLE : View.GONE);
         }
     }
-
-    // Fungsi openProductDetail() telah dibuang kerana ia tidak lagi diperlukan
-    // dan digantikan dengan Intent yang spesifik dalam setupClickListeners().
 }

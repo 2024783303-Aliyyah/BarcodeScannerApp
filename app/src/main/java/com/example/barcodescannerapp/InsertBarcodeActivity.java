@@ -1,5 +1,5 @@
 // Fail: InsertBarcodeActivity.java
-package com.example.barcodescannerapp; // Gantikan dengan pakej anda
+package com.example.barcodescannerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -53,113 +53,88 @@ public class InsertBarcodeActivity extends AppCompatActivity {
             }
         });
 
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.nav_home) {
-                startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                finish();
-                return true;
-            } else if (itemId == R.id.nav_history) {
-                Toast.makeText(InsertBarcodeActivity.this, "History page coming soon!", Toast.LENGTH_SHORT).show();
-                return true;
-            } else if (itemId == R.id.nav_bookmarks) {
-                startActivity(new Intent(getApplicationContext(), BookmarkActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                finish();
-                return true;
-            } else if (itemId == R.id.nav_resources) {
-                Toast.makeText(InsertBarcodeActivity.this, "Resources page coming soon!", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-            return false;
-        });
+        // ====================== AKTIFKAN SEMUA NAVIGASI BAWAH ======================
+        if (bottomNavigationView != null) {
+            // Kita tidak set selected item di sini supaya keyboard/input tidak terganggu secara visual,
+            // atau anda boleh set ke item yang tiada (default).
+            
+            bottomNavigationView.setOnItemSelectedListener(item -> {
+                int itemId = item.getItemId();
+                if (itemId == R.id.nav_home) {
+                    startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.nav_history) {
+                    startActivity(new Intent(getApplicationContext(), HistoryActivity.class));
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.nav_bookmarks) {
+                    startActivity(new Intent(getApplicationContext(), BookmarkActivity.class));
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.nav_resources) {
+                    startActivity(new Intent(getApplicationContext(), ResourcesActivity.class));
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    finish();
+                    return true;
+                }
+                return false;
+            });
+        }
     }
 
     private void searchBarcode(String barcode) {
-        // Ini adalah logik carian anda. 
-        // Dalam aplikasi sebenar, anda akan cari dalam pangkalan data.
-        // Untuk contoh ini, kita guna if-else.
-
-        if (barcode.equals("66263723873982")) { // Contoh barcode untuk Pepsi
-            // Produk ditemui dan berada dalam senarai boikot
+        if (barcode.equals("66263723873982")) {
             String productName = "PEPSI 250 ml";
             String fullProductName = productName + " (" + barcode + ")";
-
             resultProductName.setText(fullProductName);
             resultBarcodeNumber.setText(barcode);
-            resultStatusIcon.setImageResource(R.drawable.icon_boycott); // Perlukan ikon 'X' merah
+            resultStatusIcon.setImageResource(R.drawable.icon_boycott);
             resultStatusText.setText("This product appears in public boycott lists!");
             resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
-
-            // Paparkan kad hasil
             resultCard.setVisibility(View.VISIBLE);
-
-        } else if (barcode.equals("54458221456")) { // Contoh barcode untuk Super Ring
-            // Produk ditemui dan TIDAK berada dalam senarai boikot
+        } else if (barcode.equals("54458221456")) {
             String productName = "SUPER RING";
             String fullProductName = productName + " (" + barcode + ")";
-
             resultProductName.setText(fullProductName);
             resultBarcodeNumber.setText(barcode);
-            resultStatusIcon.setImageResource(R.drawable.icon_safe); // Perlukan ikon 'tick' hijau
-            resultStatusText.setText("Good news! This item is not flagged in any public boycott lists.");
-            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
-
-            // Paparkan kad hasil
-            resultCard.setVisibility(View.VISIBLE);
-
-        }
-        else if (barcode.equals("12345678910")) { // Contoh barcode untuk Super Ring
-            // Produk ditemui dan TIDAK berada dalam senarai boikot
-            String productName = "KITKAT";
-            String fullProductName = productName + " (" + barcode + ")";
-
-            resultProductName.setText(fullProductName);
-            resultBarcodeNumber.setText(barcode);
-            resultStatusIcon.setImageResource(R.drawable.icon_boycott); // Perlukan ikon 'tick' hijau
-            resultStatusText.setText("This product appears in public boycott lists!");
-            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
-
-            // Paparkan kad hasil
-            resultCard.setVisibility(View.VISIBLE);
-
-        }
-        else if (barcode.equals("987654321")) { // Contoh barcode untuk Super Ring
-            // Produk ditemui dan TIDAK berada dalam senarai boikot
-            String productName = "MAGGIE";
-            String fullProductName = productName + " (" + barcode + ")";
-
-            resultProductName.setText(fullProductName);
-            resultBarcodeNumber.setText(barcode);
-            resultStatusIcon.setImageResource(R.drawable.icon_boycott); // Perlukan ikon 'tick' hijau
-            resultStatusText.setText("This product appears in public boycott lists!");
-            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
-
-            // Paparkan kad hasil
-            resultCard.setVisibility(View.VISIBLE);
-
-        }
-        else if (barcode.equals("246810121416")) { // Contoh barcode untuk Super Ring
-            // Produk ditemui dan TIDAK berada dalam senarai boikot
-            String productName = "VICO";
-            String fullProductName = productName + " (" + barcode + ")";
-
-            resultProductName.setText(fullProductName);
-            resultBarcodeNumber.setText(barcode);
-            resultStatusIcon.setImageResource(R.drawable.icon_safe); // Perlukan ikon 'tick' hijau
+            resultStatusIcon.setImageResource(R.drawable.icon_safe);
             resultStatusText.setText("Good news! This item is not flagged in any public boycott lists.");
             resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
-
-            // Paparkan kad hasil
             resultCard.setVisibility(View.VISIBLE);
-
-        }
-        else {
-            // Jika barcode tidak ditemui
-            resultCard.setVisibility(View.GONE); // Sembunyikan kad
-            // Anda boleh tunjukkan Toast message
-            // Toast.makeText(this, "Barcode not found", Toast.LENGTH_SHORT).show();
+        } else if (barcode.equals("12345678910")) {
+            String productName = "KITKAT";
+            String fullProductName = productName + " (" + barcode + ")";
+            resultProductName.setText(fullProductName);
+            resultBarcodeNumber.setText(barcode);
+            resultStatusIcon.setImageResource(R.drawable.icon_boycott);
+            resultStatusText.setText("This product appears in public boycott lists!");
+            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
+            resultCard.setVisibility(View.VISIBLE);
+        } else if (barcode.equals("987654321")) {
+            String productName = "MAGGIE";
+            String fullProductName = productName + " (" + barcode + ")";
+            resultProductName.setText(fullProductName);
+            resultBarcodeNumber.setText(barcode);
+            resultStatusIcon.setImageResource(R.drawable.icon_boycott);
+            resultStatusText.setText("This product appears in public boycott lists!");
+            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
+            resultCard.setVisibility(View.VISIBLE);
+        } else if (barcode.equals("246810121416")) {
+            String productName = "VICO";
+            String fullProductName = productName + " (" + barcode + ")";
+            resultProductName.setText(fullProductName);
+            resultBarcodeNumber.setText(barcode);
+            resultStatusIcon.setImageResource(R.drawable.icon_safe);
+            resultStatusText.setText("Good news! This item is not flagged in any public boycott lists.");
+            resultStatusText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
+            resultCard.setVisibility(View.VISIBLE);
+        } else {
+            resultCard.setVisibility(View.GONE);
+            Toast.makeText(this, "Barcode not found", Toast.LENGTH_SHORT).show();
         }
     }
 
